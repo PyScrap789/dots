@@ -1,0 +1,16 @@
+import:
+  - ~/.config/alacritty/catppuccin/catppuccin-mocha.yml
+
+shell:
+  program: /bin/zsh
+
+window:
+  opacity: 0.8
+  padding:
+    x: 10
+    y: 10
+
+font:
+  normal:
+    family: Roboto Mono Nerd Font
+    style: Regular
