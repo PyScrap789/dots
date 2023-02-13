@@ -43,31 +43,33 @@ font pango:monospace 8
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:Roboto Mono Nerd Font 8
+font pango:Jetbrains Mono Nerd Font 8
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
-exec_always --no-startup-id picom --experimental-backends
+exec_always --no-startup-id picom
 exec_always --no-startup-id ~/.fehbg
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id xinput set-prop "MSFT0001:01 04F3:309E Touchpad" "libinput Tapping Enabled" 1
 exec_always --no-startup-id xinput set-prop "MSFT0001:01 04F3:309E Touchpad" "libinput Natural Scrolling Enabled" 1
-exec_always --no-startup-id autotiling
+exec_always --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
-default_border pixel 1
+default_border pixel 0
 
-gaps inner 10
-gaps outer -5
+gaps inner 15
+gaps outer -3
 smart_gaps on
 smart_borders on
 
+for_window [floating] border pixel 0
+
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- 'i3lock -i ~/wallpapers/192370.png' --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -92,6 +94,15 @@ tiling_drag modifier titlebar
 
 # start a terminal
 bindsym $mod+Return exec alacritty
+
+#programs
+bindsym $mod+F1 exec firefox
+bindsym $mod+F2 exec code
+bindsym $mod+F3 exec nautilus
+bindsym $mod+F4 exec alacritty --command cava
+bindsym $mod+F5 exec alacritty --command peaclock
+
+bindsym $mod+F10 split toggle
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -134,7 +145,6 @@ bindsym $mod+h split h
 
 # split in vertical orientation
 bindsym $mod+v split v
-
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
